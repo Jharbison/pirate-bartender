@@ -1,0 +1,21 @@
+
+
+body {
+  background: url(pb.jpg) center center/cover no-repeat fixed;
+  background-color: black;
+  font-family:'Pirata One', cursive;
+  text-align: center;
+  text-shadow:
+    -1px -1px 0 #ffffff,
+    1px -1px 0 #ffffff,
+    -1px 1px 0 #ffffff,
+    1px 1px 0 #ffffff;
+}
+
+.title {
+	font-size: 5em;
+}
+
+form {
+	font-size: 2em;
+}
