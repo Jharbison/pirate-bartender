@@ -43,7 +43,7 @@ var questions = [
 	 
 	    var bartendingQuestions = "";
 	    for (var i = 0; i < questions.length; i++) {
-	        bartendingQuestions += '<p>' + questions[i] + '<br> Yarr! <input name=q' + i + '   value="true" type=radio> <br> No!! <input name=q' + i + ' type=radio value="false"></p>';
+	        bartendingQuestions += '<p>' + questions[i] + '<br> Yarr! <input name=' + i + '   value="true" type=radio> <br> No!! <input name=' + i + ' type=radio value="false"></p>';
 	    }
 	    
 	    $('#drinkQuestions').append("<div>" + bartendingQuestions + "</div>");
@@ -54,16 +54,31 @@ var questions = [
 	    var currentUserChoice = $('form').serializeArray();
 	    	console.log(currentUserChoice);
 
-	    var userDrink = new Drink ({
-	    	strong: ingredients.strong[randomNumber()],
-	    	salty: ingredients.salty[randomNumber()],
-	    	bitter: ingredients.bitter[randomNumber()],
-	    	sweet: ingredients.sweet[randomNumber()],
-	    	fruity: ingredients.fruity[randomNumber()],
-	    });	
-	        
-	    	
-	    });
+	    var userIngredients = {};
+		Object.keys(ingredients).forEach(function(key,index) {
+			console.log(currentUserChoice[index].value);
+		if(currentUserChoice[index].value == "true"){
+		userIngredients[key] = ingredients[key][randomNumber()];
+		} else {
+		userIngredients[key] = ''
+		}
+		});
+
+		var userDrink = new Drink(userIngredients);
+
+		var drink = "";
+		var count = 0;
+		Object.keys(userDrink).forEach(function(key,index){
+		  if(userDrink[key] != ""){
+		    count++;
+		    if(count != 1){
+		      drink += " with ";
+		    }
+		    drink += userDrink[key];
+		  }
+		});
+		console.log(drink);
+	});
 
 
 	});
